@@ -1,5 +1,5 @@
 # Introduction 
-This repo contains all the work required by the DevOps team. We aim to apply the DevOps methodology standards which helps to  </br>
+This repo contains all the work required by the DevOps team. We aim to apply the DevOps methodology standards which helps to </br>
 increase realibility, reduce development lifecycly time, and increase effeciency via automation.
 
 # Getting Started
