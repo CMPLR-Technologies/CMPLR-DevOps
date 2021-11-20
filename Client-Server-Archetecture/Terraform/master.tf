@@ -111,7 +111,10 @@ resource "aws_instance" "master" {
   instance_type = "t2.micro"    #all other details are by default suitable to the application
   key_name = "master"   //this is the name you used to create the key pair in your aws account and terraform knows how to get it
   security_groups = [ "${aws_security_group.master-ingress.id}" ]
-
+  root_block_device {
+    delete_on_termination = false
+    volume_size = 30
+  }
 
   tags = {
       Name = "master"
