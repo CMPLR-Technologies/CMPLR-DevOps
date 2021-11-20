@@ -107,12 +107,31 @@ resource "aws_instance" "master" {
       Name = "master"
   }
   subnet_id = "${aws_subnet.master-subnet.id}"
+}
 
+
+//The null resource is to sort execution of the file provisioner as it needs to wait for booth aws_eip and aws_instance to be created
+//We can not but this inside the instance and depend on the aws_eip as it (the aws_eip) already depends on the instance
+resource "null_resource" "master-null" {
+ depends_on = [
+   aws_eip.master-ip,
+   aws_instance.master
+ ] 
 //Run the configuration sript for the created instance : install git, docker, jenkins, terraform (so he can provision other instances)
 # Copy in the bash script we want to execute.
   # The source is the location of the bash script
   # on the local linux box you are executing terraform
   # from.  The destination is on the new AWS instance.
+  
+  #Create connection with the provisioned instance
+  connection {
+    type    = "ssh"
+    user = "ubuntu"
+    private_key = "${file("./master.pem")}"
+    host = "${aws_eip.master-ip.public_ip}"
+  }
+
+  #Copy the bash script file
   provisioner "file" {
     source      = "./master.sh"
     destination = "/tmp/master.sh"
@@ -121,8 +140,7 @@ resource "aws_instance" "master" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/master.sh",
-      "sudo source /tmp/master.sh",
+      "sudo /tmp/master.sh",
     ]
   }
 }
-

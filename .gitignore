@@ -5,3 +5,5 @@ Client-Server-Archetecture/Terraform/master.pem
 Client-Server-Archetecture/Terraform/terraform.tfstate
 Client-Server-Archetecture/Terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/3.66.0/linux_amd64/terraform-provider-aws_v3.66.0_x5
 Client-Server-Archetecture/Terraform/terraform.tfstate.backup
+Client-Server-Archetecture/Terraform/.terraform/providers/registry.terraform.io/hashicorp/null/3.1.0/linux_amd64/terraform-provider-null_v3.1.0_x5
+Client-Server-Archetecture/Terraform/.terraform.tfstate.lock.info
