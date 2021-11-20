@@ -234,3 +234,38 @@ resource "azurerm_linux_virtual_machine" "cmplrslave" {
         environment = "Application Deployment"
     }
 }
+
+//The null resource is to sort execution of the file provisioner as it needs to wait for booth aws_eip and aws_instance to be created
+//We can not but this inside the instance and depend on the aws_eip as it (the aws_eip) already depends on the instance
+resource "null_resource" "master-null" {
+ depends_on = [
+    azurerm_public_ip.cmplr_ip,
+   azurerm_linux_virtual_machine.cmplrslave
+ ] 
+//Run the configuration sript for the created instance : install git, docker, jenkins, terraform (so he can provision other instances)
+# Copy in the bash script we want to execute.
+  # The source is the location of the bash script
+  # on the local linux box you are executing terraform
+  # from.  The destination is on the new AWS instance.
+  
+  #Create connection with the provisioned instance
+  connection {
+    type    = "ssh"
+    user = "azureuser"
+    private_key = tls_private_key.cmplr_key
+    host = azurerm_public_ip.cmplr_ip
+  }
+
+  #Copy the bash script file
+  provisioner "file" {
+    source      = "./slave.sh"
+    destination = "/tmp/slave.sh"
+  }
+  # Change permissions on bash script and execute from ec2-user.
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/slave.sh",
+      "sudo /tmp/slave.sh",
+    ]
+  }
+}
