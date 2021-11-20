@@ -12,13 +12,12 @@ sudo snap install docker
 #configure docker to be super user
 sudo groupadd docker
 sudo usermod -aG docker $USER
-newgrp docker 
 
 #install jenkins (all configuration data are stored inside /var/jenkins_home )
 
 sudo apt update
 
-sudo apt install openjdk-11-jdk
+sudo apt install openjdk-11-jdk -y
 
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 
@@ -26,7 +25,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 
 sudo apt update
 
-sudo apt install jenkins
+sudo apt install jenkins -y
 
 #install terraform
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
