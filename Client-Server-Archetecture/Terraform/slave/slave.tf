@@ -253,7 +253,7 @@ resource "null_resource" "master-null" {
     type    = "ssh"
     user = "azureuser"
     private_key = tls_private_key.cmplr_key.private_key_pem
-    host = azurerm_public_ip.cmplr_ip.ip_address
+    host = azurerm_linux_virtual_machine.cmplrslave.public_ip_address
   }
 
   #Copy the bash script file
