@@ -17,7 +17,7 @@ sudo apt-get update && sudo apt-get install terraform
 #This is for 
 cd ./Terraform/master
 #Export the needed environment variables for terraform to provision cloud. Note that they will only be exported inside the script not the shell running it
-export $(grep -v '^#' Terraform/.env | xargs)   
+export $(grep -v '^#' .env | xargs)   
 
 terraform init
 terraform apply -auto-approve
