@@ -38,4 +38,4 @@ chmod u+x host.sh
 8 - log in the instance like mentioned in step 5 and type `sudo reboot` to add docker to the sudo users </br>
 9 - go to the IP:8080 to access jenkins </br>
 10 - go to the IP:9090 to access prometheus </br>
-11 - To download the private key of the azure `terraform output -raw tls_private_key > slave.pem`
+11 - You will find the private key for the slave instance on azure in the directory Terraform/slave so you can ssh to it like step 5

@@ -25,3 +25,6 @@ terraform apply -auto-approve
 cd ../slave
 terraform init
 terraform apply -auto-approve
+
+terraform output -raw tls_private_key > slave.pem
+chmod 400 slave.pem
