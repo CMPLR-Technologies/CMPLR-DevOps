@@ -51,6 +51,16 @@ resource "aws_security_group" "master-ingress" {
         protocol = "tcp"
     }
 
+    //To access prometheus
+    ingress {
+        cidr_blocks = [
+        "0.0.0.0/0"
+        ]
+        from_port = 9090  //for prometheus
+        to_port = 9090    //for prometheus
+        protocol = "tcp"
+    }
+
 
 
     // Terraform removes the default rule and we use egress to configure for outbound rules
