@@ -202,7 +202,7 @@ resource "azurerm_linux_virtual_machine" "cmplrslave" {
     location              = "eastus"
     resource_group_name   = azurerm_resource_group.cmplr_rg.name
     network_interface_ids = [azurerm_network_interface.cmplr_NIC.id]
-    size                  = "Standard_B1s"  //the most basic instance
+    size                  = "Standard_D2as_v4"  //the most suitable instance
 
     os_disk {
         name              = "myOsDisk"
