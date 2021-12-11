@@ -1,1 +1,2 @@
-CREATE DATABASE cmplr
+CREATE DATABASE cmplr;
+
