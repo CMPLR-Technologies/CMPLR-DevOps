@@ -52,3 +52,10 @@ sudo docker run \
     -p 9090:9090 \
     -v prom-config:/etc/prometheus \
     -d prom/prometheus
+
+#for ssl certificate 
+sudo apt-get install openssl
+
+
+#Install azure cli to be able to access our container registry
+sudo apt install azure-cli -y

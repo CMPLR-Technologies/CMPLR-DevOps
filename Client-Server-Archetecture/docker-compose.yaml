@@ -1,10 +1,11 @@
 version: "3.1"
 services:
   frontend:
-    image: osamamagdy/frontend:v2
+    image: osamamagdy/frontend:latest
     container_name: frontend
     ports:
       - 80:80
+      - 443:443
     networks:
       - cmplr
     restart: on-failure
@@ -12,7 +13,7 @@ services:
       - backend
 
   backend:
-    image: osamamagdy/backend:v2
+    image: osamamagdy/backend:latest
     container_name: backend
     networks:
       - cmplr

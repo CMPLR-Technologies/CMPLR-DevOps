@@ -30,3 +30,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo apt update
 
 sudo apt install openjdk-11-jdk -y
+
+
+#Install azure cli to be able to access our container registry
+sudo apt install azure-cli -y
