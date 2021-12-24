@@ -74,7 +74,7 @@ pipeline {
             steps {
                 echo "======== Configure containers ========="
                 sh """
-                docker exec backend php artisan migrate
+                docker exec backend php artisan migrate --force
                 """
             }
             post {
