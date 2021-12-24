@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   frontend:
-    image: osamamagdy/frontend:latest
+    image: cmplr.azurecr.io/frontend:latest
     container_name: frontend
     ports:
       - 80:80
@@ -13,7 +13,7 @@ services:
       - backend
 
   backend:
-    image: osamamagdy/backend:latest
+    image: cmplr.azurecr.io/backend:latest
     container_name: backend
     networks:
       - cmplr
