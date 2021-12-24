@@ -55,7 +55,7 @@ pipeline {
                 echo "======== docker-compose up ========="
                 sh """
                 docker-compose down
-                docker-compose up --build -d 
+                docker-compose up -d 
                 """
             }
             post {
