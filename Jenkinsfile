@@ -74,10 +74,10 @@ pipeline {
             steps {
                 echo "======== Configure containers ========="
                 sh """
-                docker exec backend php artisan migrate:refresh -y
-                docker exec backend php artisan db:seed -y
-                docker exec backend php artisan passport:install -y
-                docker exec backend php artisan key:generate  -y
+                docker exec backend php artisan -y migrate:refresh 
+                docker exec backend php artisan -y db:seed 
+                docker exec backend php artisan -y passport:install 
+                docker exec backend php artisan -y key:generate  
                 """
             }
             post {
