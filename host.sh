@@ -20,8 +20,18 @@ cd ./Terraform/master
 
 terraform init
 terraform apply -auto-approve
+terraform output -raw tls_private_key > beta.pem
+chmod 400 beta.pem
+
+cd ../beta
+
+#Export the needed environment variables for terraform to provision cloud. Note that they will only be exported inside the script not the shell running it
+
+terraform init
+terraform apply -auto-approve
 terraform output -raw tls_private_key > master.pem
 chmod 400 master.pem
+
 cd ../slave
 
 export $(grep -v '^#' .env | xargs)   
