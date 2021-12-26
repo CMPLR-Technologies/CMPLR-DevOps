@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label "cmplr"
+        label "beta"
     
     }
     environment{
