@@ -23,7 +23,7 @@ services:
 
   db:
     image: postgres
-    container_name: cmplr-db
+    container_name: db
     restart: unless-stopped
     environment:
       POSTGRES_DATABASE: ${DB_DATABASE}
