@@ -4,7 +4,7 @@ pipeline {
     
     }
     environment{
-        LOGIN_SERVER = "cmplr.azurecr.io"
+        LOGIN_SERVER = "beta"
     }
     stages {
         stage("fetch"){
@@ -29,26 +29,6 @@ pipeline {
                 }
             }
         }
-        stage('docker pull') {
-            steps {
-                echo "========docker pull images ========"
-                sh """
-                    docker pull $LOGIN_SERVER/backend:latest
-                    docker pull $LOGIN_SERVER/frontend:latest
-                """    
-            }
-            post {
-                success {
-                    echo "========docker pull success ========"
-                    //slackSend (color:"#00FF00", message: "Master: Building Image success")
-                }
-                failure {
-                    echo "========docker pull failed========"
-                    //slackSend (color:"#FF0000", message: "Master: Building Image failure")
-                }
-           }
-        }
-        
         
         stage('deploy') {
             steps {
