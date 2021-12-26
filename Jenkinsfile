@@ -58,7 +58,7 @@ pipeline {
                 docker exec backend php artisan db:seed --force
                 docker exec backend php artisan passport:install --force
                 docker exec backend php artisan key:generate --force
-                docker exec backend php artisan route:cache --force
+                docker exec backend php artisan route:cache
                 """
             }
             post {
