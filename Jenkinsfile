@@ -56,7 +56,8 @@ pipeline {
                 sh """
                 docker exec backend php artisan migrate --force
                 docker exec backend php artisan l5-swagger:generate
-                docker exec backend php artisan route:cache                """
+                docker exec backend php artisan route:cache               
+                """
             }
             post {
                 success {
