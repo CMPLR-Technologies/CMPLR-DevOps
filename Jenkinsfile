@@ -75,7 +75,7 @@ pipeline {
                 echo "======== Configure containers ========="
                 sh """
                 docker exec backend php artisan migrate --force
-                docker exec php artisan l5-swagger:generate
+                docker exec backend php artisan l5-swagger:generate
                 docker exec backend php artisan route:cache
                 """
             }
