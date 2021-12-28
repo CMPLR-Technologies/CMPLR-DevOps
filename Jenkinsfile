@@ -76,7 +76,7 @@ pipeline {
             }
             post {
                 success {
-                    echo spqce
+                    echo space
                     //slackSend (color:"#00FF00", message: "Master: pushing image success")
                 }
                 failure {
