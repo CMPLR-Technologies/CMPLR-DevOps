@@ -46,4 +46,3 @@ networks:
     driver: bridge
 volumes:
   postgres-data:
-  backend-logs:
