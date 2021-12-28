@@ -21,7 +21,7 @@ services:
       - db
     restart: on-failure
     volumes:
-      - backend-logs/:/var/www/storage/logs/
+      - backend-storage:/var/www/storage/
 
   db:
     image: postgres
@@ -46,4 +46,4 @@ networks:
     driver: bridge
 volumes:
   postgres-data:
-  backend-logs:
+  backend-storage:
