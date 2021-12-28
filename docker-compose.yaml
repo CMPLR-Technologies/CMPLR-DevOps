@@ -20,6 +20,8 @@ services:
     depends_on:
       - db
     restart: on-failure
+    volumes:
+      - ./docker-compose/backend.log:/var/www/storage/logs/laravel.log
 
   db:
     image: postgres
@@ -44,3 +46,4 @@ networks:
     driver: bridge
 volumes:
   postgres-data:
+  backend-logs:
