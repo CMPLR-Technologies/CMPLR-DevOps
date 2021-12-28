@@ -21,7 +21,7 @@ services:
       - db
     restart: on-failure
     volumes:
-      - ./docker-compose/backend-logs/:/var/www/storage/logs/
+      - backend-logs/:/var/www/storage/logs/
 
   db:
     image: postgres
@@ -46,3 +46,4 @@ networks:
     driver: bridge
 volumes:
   postgres-data:
+  backend-logs:
