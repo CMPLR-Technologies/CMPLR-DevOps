@@ -72,15 +72,17 @@ pipeline {
         stage('clean') {
             steps {
                 echo "======== Clean up dangling images ========="
-                space = sh(returnStdout: true, script: "docker image prune -f").trim()
+                sh """
+                docker image prune -f
+                """
             }
             post {
                 success {
-                    echo space
+                    echo "======== Clean up is successful ========="
                     //slackSend (color:"#00FF00", message: "Master: pushing image success")
                 }
                 failure {
-                    echo "======== Docker Images clean up  has failed ========="
+                    echo "======== Clean up has failed ========="
                     //slackSend (color:"#FF0000", message: "Master: pushing image failure")
                 }
            }
