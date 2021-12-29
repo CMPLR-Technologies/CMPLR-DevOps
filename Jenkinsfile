@@ -88,6 +88,25 @@ pipeline {
            }
         }
 
+        stage('test E2E') {
+            steps {
+                echo "======== Run the testing container  ========="
+                sh """
+                docker run -d --name=testing  -v ~/test_reports:./cypress/reports $LOGIN_SERVER/testing:latest
+                """
+            }
+            post {
+                success {
+                    echo "======== Testing is successful ========="
+                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                }
+                failure {
+                    echo "======== Testing has failed ========="
+                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                }
+           }
+        }
+
 
     }
 }
