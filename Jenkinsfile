@@ -35,6 +35,7 @@ pipeline {
                 echo "======== docker-compose up ========="
                 sh """
                 docker-compose down
+                docker rm -f testing
                 docker-compose up -d 
                 """
             }
@@ -92,7 +93,7 @@ pipeline {
             steps {
                 echo "======== Run the testing container  ========="
                 sh """
-                docker run -d --name=testing  -v ~/test_reports:./cypress/reports $LOGIN_SERVER/testing:latest
+                docker run -d --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
                 """
             }
             post {
