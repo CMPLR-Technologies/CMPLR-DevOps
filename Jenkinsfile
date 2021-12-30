@@ -36,6 +36,7 @@ pipeline {
                 sh """
                 docker-compose down
                 docker rm -f testing
+
                 docker-compose up -d 
                 """
             }
@@ -70,30 +71,12 @@ pipeline {
                 }
            }
         }
-        stage('clean') {
-            steps {
-                echo "======== Clean up dangling images ========="
-                sh """
-                docker image prune -f
-                """
-            }
-            post {
-                success {
-                    echo "======== Clean up is successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
-                }
-                failure {
-                    echo "======== Clean up has failed ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
-                }
-           }
-        }
 
         stage('test E2E') {
             steps {
                 echo "======== Run the testing container  ========="
                 sh """
-                docker run -d --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
+                docker run --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
                 """
             }
             post {
@@ -108,6 +91,24 @@ pipeline {
            }
         }
 
+        stage('clean') {
+            steps {
+                echo "======== Clean up dangling images ========="
+                sh """
+                docker system prune -f
+                """
+            }
+            post {
+                success {
+                    echo "======== Clean up is successful ========="
+                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                }
+                failure {
+                    echo "======== Clean up has failed ========="
+                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                }
+           }
+        }
 
     }
 }
