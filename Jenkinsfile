@@ -75,9 +75,9 @@ pipeline {
         stage('test E2E') {
             steps {
                 echo "======== Run the testing container  ========="
-//                sh """
-//                docker run --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
-//                """
+                sh """
+                docker run --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
+                """
             }
             post {
                 success {
