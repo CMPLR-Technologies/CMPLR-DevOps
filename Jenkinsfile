@@ -5,9 +5,8 @@ pipeline {
     }
     environment{
         LOGIN_SERVER = "beta"
-        withCredentials([string(credentialsId: 'Discord', variable: 'Discord')]) {
-        WEBHOOK_URL = Discord
-        }
+        WEBHOOK_URL = credentials('Discord')
+        
     }
     stages {
         stage("fetch"){
