@@ -1,0 +1,35 @@
+version: "2.0"
+services:
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    ports:
+      - 9100:9100
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rslave"
+    pid: host
+    restart: always
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    restart: always
+  
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+      GF_SERVER_ROOT_URL: http://20.127.114.33:3000/
+    ports:
+      - 3000:3000
+    volumes:
+      - "grafana-storage:/var/lib/grafana"
+    restart: always
+volumes:
+  grafana-storage:

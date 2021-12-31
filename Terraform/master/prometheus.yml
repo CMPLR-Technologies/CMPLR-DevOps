@@ -1,0 +1,13 @@
+scrape_configs:
+  - job_name:  'node'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          group: 'cmplr'
+
+
+#https://medium.com/nerd-for-tech/tutorial-how-to-deploy-prometheus-and-node-exporter-as-containers-on-a-remote-server-with-5-af5b449be49b

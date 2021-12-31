@@ -45,14 +45,6 @@ sudo usermod -aG docker jenkins
 sudo service jenkins restart
 
 
-#install prometheus (due to its tidious configuration, we will use it as docker image. Unlinke Jenkins there is no drawbacks of operating it inside docker )
-
-sudo docker volume create prom-config
-sudo docker run \
-    -p 9090:9090 \
-    -v prom-config:/etc/prometheus \
-    -d prom/prometheus
-
 #for ssl certificate 
 sudo apt-get install openssl
 
