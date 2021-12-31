@@ -22,12 +22,11 @@ pipeline {
                     cp ~/env/docker-compose.env ./.env
 
                     """
-                    discordSend description: "Jenkins Pipeline Build", footer: "Fetch executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
 
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    discordSend description: "Jenkins Pipeline Build", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build",thumbnail: "jenkins.io/images/logos/ninja/256.png", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
 
                 }
             }
@@ -47,11 +46,10 @@ pipeline {
             post {
                 success {
                     echo "======== Docker Compose up was successful ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "deployment executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "========        Docker Compose failed     ========="
-                    discordSend description: "Jenkins Pipeline Build", footer: "deployment execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "jenkins.io/images/logos/ninja/256.png",footer: "deployment execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -67,11 +65,10 @@ pipeline {
             post {
                 success {
                     echo "======== App is deployed successfully ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "Backend-Configuration executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== App deployment has failed ========="
-                    discordSend description: "Jenkins Pipeline Build", footer: "Backend-Configuration execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build",thumbnail: "jenkins.io/images/logos/ninja/256.png" ,footer: "Backend-Configuration execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -86,11 +83,10 @@ pipeline {
             post {
                 success {
                     echo "======== Testing is successful ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== Testing has failed ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing failed",thumbnail: "jenkins.io/images/logos/ninja/256.png" ,result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -105,11 +101,11 @@ pipeline {
             post {
                 success {
                     echo "======== Clean up is successful ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "Cleaning disk executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "jenkins.io/images/logos/ninja/256.png",footer: "Pipeline executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== Clean up has failed ========="
-                    discordSend description: "Jenkins Pipeline Build", footer: "Cleaning disk execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "jenkins.io/images/logos/ninja/256.png", footer: "Cleaning disk execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
