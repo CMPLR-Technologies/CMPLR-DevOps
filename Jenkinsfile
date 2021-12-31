@@ -6,7 +6,7 @@ pipeline {
     environment{
         LOGIN_SERVER = "beta"
         withCredentials([string(credentialsId: 'Discord', variable: 'Discord')]) {
-        _webhookURL = Discord
+        WEBHOOK_URL = Discord
         }
     }
     stages {
@@ -29,7 +29,7 @@ pipeline {
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: _webhookURL
+                    discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
 
                 }
             }
