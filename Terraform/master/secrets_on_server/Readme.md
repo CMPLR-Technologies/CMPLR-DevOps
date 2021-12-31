@@ -1,0 +1,1 @@
+The beta server should contain 5 directories --> {monitoring, jenkins_slave, env , nginx , test_reports}
