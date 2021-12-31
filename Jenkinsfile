@@ -5,6 +5,9 @@ pipeline {
     }
     environment{
         LOGIN_SERVER = "beta"
+        withCredentials([string(credentialsId: 'Discord', variable: 'Discord')]) {
+        webhookURL = Discord
+        }
     }
     stages {
         stage("fetch"){
@@ -13,7 +16,7 @@ pipeline {
                 sh"""
                    pwd
                 """
-                git branch: "beta", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.DevOps/_git/CMPLR-Technologies.DevOps"
+                git branch: "b;leta", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.DevOps/_git/CMPLR-Technologies.DevOps"
             }
             post{
                 success{
@@ -26,7 +29,7 @@ pipeline {
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: webhookURL
 
                 }
             }
