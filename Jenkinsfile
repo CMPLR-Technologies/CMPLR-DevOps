@@ -20,7 +20,7 @@ pipeline {
                     echo "=======fetch executed successfully========"
                     sh"""
                     cp ~/env/docker-compose.env ./.env
-                    discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", result: SUCCESS, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend (description: "Jenkins Pipeline Build", footer: "Footer Text", result: SUCCESS, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE")
 
                     """
                 }
