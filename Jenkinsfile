@@ -27,8 +27,8 @@ pipeline {
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    //slackSend (color:"#FF0000", message: "Failed to pull code-base from github")
-                    
+                    discordSend description: "Jenkins Pipeline Build", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+
                 }
             }
         }
@@ -42,15 +42,16 @@ pipeline {
 
                 docker-compose up -d 
                 """
+
             }
             post {
                 success {
                     echo "======== Docker Compose up was successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                discordSend description: "Jenkins Pipeline Build", footer: "deployment executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "========        Docker Compose failed     ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                    discordSend description: "Jenkins Pipeline Build", footer: "deployment execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -66,11 +67,11 @@ pipeline {
             post {
                 success {
                     echo "======== App is deployed successfully ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                discordSend description: "Jenkins Pipeline Build", footer: "Backend-Configuration executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== App deployment has failed ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                    discordSend description: "Jenkins Pipeline Build", footer: "Backend-Configuration execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -85,11 +86,11 @@ pipeline {
             post {
                 success {
                     echo "======== Testing is successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== Testing has failed ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
@@ -104,11 +105,11 @@ pipeline {
             post {
                 success {
                     echo "======== Clean up is successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                discordSend description: "Jenkins Pipeline Build", footer: "Cleaning disk executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
                 failure {
                     echo "======== Clean up has failed ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                    discordSend description: "Jenkins Pipeline Build", footer: "Cleaning disk execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
                 }
            }
         }
