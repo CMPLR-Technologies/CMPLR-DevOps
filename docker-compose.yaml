@@ -30,14 +30,14 @@ services:
     depends_on:
       - backend
 
-  flutter:
-    image: beta/flutter:latest
-    container_name: flutter
-    networks:
-      - cmplr
-    restart: on-failure
-    depends_on:
-      - backend
+#  flutter:
+#    image: beta/flutter:latest
+#    container_name: flutter
+#    networks:
+#      - cmplr
+#    restart: on-failure
+#    depends_on:
+#      - backend
 
 
   backend:
