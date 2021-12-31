@@ -62,8 +62,6 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       SERVICE_TAGS: dev
       SERVICE_NAME: pgsql
-    ports:
-      - 3306:5432
     volumes:
       - ./docker-compose/pgsql:/docker-entrypoint-initdb.d
       - postgres-data:/var/lib/postgresql/data
