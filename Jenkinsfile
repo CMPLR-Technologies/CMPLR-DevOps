@@ -91,29 +91,12 @@ pipeline {
             post {
                 success {
                     echo "======== App is deployed successfully ========="
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Pipeline executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
+
                 }
                 failure {
                     echo "======== App deployment has failed ========="
                     discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Backend-Configuration execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
-                }
-           }
-        }
-
-        stage('clean') {
-            steps {
-                echo "======== Clean up dangling images ========="
-                sh """
-                docker system prune -f
-                """
-            }
-            post {
-                success {
-                    echo "======== Clean up is successful ========="
-                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Pipeline executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
-                }
-                failure {
-                    echo "======== Clean up has failed ========="
-                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png", footer: "Cleaning disk execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
            }
         }
