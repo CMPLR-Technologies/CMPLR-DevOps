@@ -15,6 +15,7 @@ services:
       - frontend
       - backend
     volumes:
+      - ~/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ~/nginx/nginx.key:/etc/nginx/certs/nginx.key
       - ~/nginx/nginx-certificate.crt:/etc/nginx/certs/nginx-certificate.crt
 
