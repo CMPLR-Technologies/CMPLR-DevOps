@@ -2,9 +2,9 @@ version: "3.1"
 services:
 
 
-  webserver:
+  web_server:
     image: nginx
-    container_name: webserver
+    container_name: web_server
     ports:
       - 80:80
       - 443:443
