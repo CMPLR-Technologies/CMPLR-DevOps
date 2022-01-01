@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        label "beta"
+        label "cmplr"
     
     }
     environment{
-        LOGIN_SERVER = "beta"
-        WEBHOOK_URL = credentials('Beta_Discord')
+        LOGIN_SERVER = "cmplr.azurecr.io"
+        WEBHOOK_URL = credentials('Prod_Discord')
         
     }
     stages {
@@ -15,7 +15,7 @@ pipeline {
                 sh"""
                    pwd
                 """
-                git branch: "beta", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.DevOps/_git/CMPLR-Technologies.DevOps"
+                git branch: "main", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.DevOps/_git/CMPLR-Technologies.DevOps"
             }
             post{
                 success{
@@ -34,6 +34,30 @@ pipeline {
             }
         }
         
+
+        stage('docker pull') {
+            steps {
+                echo "========docker pull images ========"
+                sh """
+                    docker pull $LOGIN_SERVER/backend:latest
+                    docker pull $LOGIN_SERVER/frontend:latest
+                    docker pull $LOGIN_SERVER/flutter:latest
+                """    
+            }
+            post {
+                success {
+                    echo "========docker pull success ========"
+                }
+                failure {
+                    echo "========docker pull failed========"
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Pulling images failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
+                }
+           }
+        }
+
+
+
+
         stage('deploy') {
             steps {
                 echo "======== docker-compose up ========="
@@ -71,24 +95,6 @@ pipeline {
                 failure {
                     echo "======== App deployment has failed ========="
                     discordSend description: "Jenkins Pipeline Build",thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Backend-Configuration execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
-                }
-           }
-        }
-
-        stage('test E2E') {
-            steps {
-                echo "======== Run the testing container  ========="
-                sh """
-                docker run --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
-                """
-            }
-            post {
-                success {
-                    echo "======== Testing is successful ========="
-                }
-                failure {
-                    echo "======== Testing has failed ========="
-                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing failed",thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
            }
         }
