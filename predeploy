@@ -62,7 +62,7 @@ pipeline {
                 sh """
                 docker exec backend php artisan l5-swagger:generate
                 docker exec backend php artisan route:cache        
-                docker exec backend php artisan migrate:fresh --seed
+                docker exec backend php artisan migrate:fresh --force --seed
                 docker exec backend php artisan passport:install
                 docker exec backend php artisan route:clear
                 docker exec backend php artisan config:clear
