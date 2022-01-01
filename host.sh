@@ -34,8 +34,7 @@ chmod 400 master.pem
 
 cd ../slave
 
-export $(grep -v '^#' .env | xargs)   
 terraform init
 terraform apply -auto-approve
-
+terraform output -raw tls_private_key > slave.pem
 chmod 400 slave.pem
