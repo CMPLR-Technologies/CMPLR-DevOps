@@ -63,7 +63,6 @@ pipeline {
                 echo "======== docker-compose up ========="
                 sh """
                 docker-compose down
-                docker rm -f testing
 
                 docker-compose up -d 
                 """
