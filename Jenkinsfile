@@ -75,6 +75,24 @@ pipeline {
            }
         }
 
+        stage('test E2E') {
+            steps {
+                echo "======== Run the testing container  ========="
+                sh """
+                docker run --name=testing  -v ~/test_reports:/app/cypress/reports $LOGIN_SERVER/testing:latest
+                """
+            }
+            post {
+                success {
+                    echo "======== Testing is successful ========="
+                }
+                failure {
+                    echo "======== Testing has failed ========="
+                discordSend description: "Jenkins Pipeline Build", footer: "E2E Testing failed",thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
+                }
+           }
+        }
+
         stage('clean') {
             steps {
                 echo "======== Clean up dangling images ========="
