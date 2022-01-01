@@ -22,7 +22,7 @@ services:
 
 
   frontend:
-    image: beta/frontend:latest
+    image: cmplr.azurecr.io/frontend:latest
     container_name: frontend
     networks:
       - cmplr
@@ -31,7 +31,7 @@ services:
       - backend
 
   flutter:
-    image: beta/flutter:latest
+    image: cmplr.azurecr.io/flutter:latest
     container_name: flutter
     networks:
       - cmplr
@@ -41,7 +41,7 @@ services:
 
 
   backend:
-    image: beta/backend:latest
+    image: cmplr.azurecr.io/backend:latest
     container_name: backend
     networks:
       - cmplr
