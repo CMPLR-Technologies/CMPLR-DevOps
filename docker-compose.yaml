@@ -15,7 +15,7 @@ services:
       - frontend
       - backend
     volumes:
-      - ~/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf #. is not supposed to be ~ as the file is stored in the repo
       - ~/nginx/nginx.key:/etc/nginx/certs/nginx.key
       - ~/nginx/nginx-certificate.crt:/etc/nginx/certs/nginx-certificate.crt
 
