@@ -15,8 +15,6 @@ services:
       - frontend
       - backend
     volumes:
-      - ~/test_reports/mochareports:/usr/share/nginx/html
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ~/nginx/nginx.key:/etc/nginx/certs/nginx.key
       - ~/nginx/nginx-certificate.crt:/etc/nginx/certs/nginx-certificate.crt
 
