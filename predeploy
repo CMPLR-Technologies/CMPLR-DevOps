@@ -72,6 +72,9 @@ pipeline {
                     sh """
                 docker login ${LOGIN_SERVER} -u ${USERNAME}  -p ${PASSWORD}
                 docker push ${LOGIN_SERVER}/backend:latest
+                docker push ${LOGIN_SERVER}/frontend:latest
+                docker push ${LOGIN_SERVER}/flutter:latest
+                
                 """
                 }
             }
