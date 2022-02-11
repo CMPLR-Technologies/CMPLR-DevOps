@@ -29,15 +29,6 @@ services:
     depends_on:
       - backend
 
-  flutter:
-    image: cmplr.azurecr.io/flutter:latest
-    container_name: flutter
-    networks:
-      - cmplr
-    restart: on-failure
-    depends_on:
-      - backend
-
 
   backend:
     image: cmplr.azurecr.io/backend:latest
