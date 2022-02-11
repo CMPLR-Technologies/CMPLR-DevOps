@@ -214,7 +214,7 @@ resource "azurerm_linux_virtual_machine" "betamaster" {
     location              = "eastus"
     resource_group_name   = azurerm_resource_group.beta_rg.name
     network_interface_ids = [azurerm_network_interface.beta_NIC.id]
-    size                  = "Standard_D2as_v4"  //the most suitable instance
+    size                  = "Standard_B2s"  //the most suitable instance
 
     os_disk {
         name              = "myOsDisk"
@@ -270,7 +270,7 @@ resource "null_resource" "beta-null" {
 
   #Copy the bash script file
   provisioner "file" {
-    source      = "./beta.sh"
+    source      = "../configure-manually/beta.sh"
     destination = "/tmp/beta.sh"
   }
   # Change permissions on bash script and execute from ec2-user.

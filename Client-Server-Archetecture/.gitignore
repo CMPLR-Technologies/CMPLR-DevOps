@@ -1,0 +1,9 @@
+.env
+master.pem
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+slave.pem
+Terraform/beta/beta.pem
