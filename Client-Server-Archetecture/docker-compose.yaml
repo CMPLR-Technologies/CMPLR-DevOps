@@ -21,7 +21,7 @@ services:
 
 
   frontend:
-    image: cmplr.azurecr.io/frontend:latest
+    image: osamamagdy/cmplr_frontend:latest
     container_name: frontend
     networks:
       - cmplr
@@ -31,7 +31,7 @@ services:
 
 
   backend:
-    image: cmplr.azurecr.io/backend:latest
+    image: osamamagdy/cmplr_backend:latest
     container_name: backend
     networks:
       - cmplr
