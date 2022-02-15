@@ -57,6 +57,17 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - cmplr
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
+    networks:
+      - cmplr
+
 
 
 
